@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "bun server.ts",
+    "web": "bun web.ts",
     "clean": "rm -rf node_modules packages/backend/node_modules packages/frontend/node_modules packages/mobile/node_modules bun.lockb packages/backend/bun.lockb packages/frontend/bun.lockb packages/mobile/bun.lockb"
   },
   "devDependencies": {
