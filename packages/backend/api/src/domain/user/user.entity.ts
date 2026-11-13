@@ -1,6 +1,7 @@
 import { Email } from './value-objects/email.vo';
 import { PhoneNumber } from './value-objects/phone-number.vo';
-import { InvalidUserIdError } from './errors/InvalidUserIdError';
+import { UserId } from './value-objects/user-id.vo';
+import { EmailAlreadyExistsError } from './errors/EmailAlreadyExistsError';
 
 export interface UserProps {
    name: string;
@@ -16,13 +17,15 @@ export class User {
    private phone: PhoneNumber;
    private birthDate?: Date;
    private readonly createdAt: Date;
+   private readonly isActive: boolean;
+   //private readonly rbac;
 
    constructor(
-      private readonly id: string,
+      private readonly id: UserId,
       private readonly props: UserProps
    ) { }
 
-   get userId(): string {
+   get userId(): UserId {
       return this.id;
    }
 
@@ -34,10 +37,21 @@ export class User {
       return this.email;
    }
 
-   static create(id: string, props: UserProps) {
+   get active(): boolean {
+      return this.isActive;
+   }
 
+   static create(id: UserId, props: UserProps): User {
 
+      return new User(id,props);
       //return new User()
+   }
+
+   public changeEmail(newEmail: Email) {
+      if (this.email.equals(newEmail)) {
+         throw new EmailAlreadyExistsError();
+      }
+      this.email = newEmail;
    }
 
 

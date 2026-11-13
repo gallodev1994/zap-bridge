@@ -4,7 +4,7 @@ export abstract class UUID {
    ) {
       if (!UUID.isValid(value)) {
          throw new Error('Invalid UUID.');
-      }
+      }      
    }
 
    private static isValid(value: string): boolean {

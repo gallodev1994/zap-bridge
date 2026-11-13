@@ -20,4 +20,8 @@ export class Email {
    get email(): string {
       return this.value;
    }
+
+   equals(other: Email): boolean {
+      return this.value === other.value
+   }
 }
