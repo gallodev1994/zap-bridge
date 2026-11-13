@@ -1,5 +1,6 @@
-import { Email } from '../value-objects/email.vo';
-import { PhoneNumber } from '../value-objects/phone-number.vo';
+import { Email } from './value-objects/email.vo';
+import { PhoneNumber } from './value-objects/phone-number.vo';
+import { InvalidUserIdError } from './errors/InvalidUserIdError';
 
 export interface UserProps {
    name: string;
@@ -34,7 +35,9 @@ export class User {
    }
 
    static create(id: string, props: UserProps) {
-      
+
+
+      //return new User()
    }
 
 

@@ -1,6 +1,6 @@
 import { PhoneNumber } from './phone-number.vo';
 
-describe('Should coverage the phone-number type', () => {
+describe('Should coverage the phone-number value object of user domain', () => {
    const defaultErrorMessage = 'Invalid phone number.';
 
    it('Should create a new phone-number with invalid value', () => {

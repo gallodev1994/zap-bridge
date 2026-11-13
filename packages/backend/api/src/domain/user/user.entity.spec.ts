@@ -1,5 +1,5 @@
-import { Email } from '../value-objects/email.vo';
-import { PhoneNumber } from '../value-objects/phone-number.vo';
+import { Email } from './value-objects/email.vo';
+import { PhoneNumber } from './value-objects/phone-number.vo';
 import { User, UserProps } from './user.entity';
 
 describe("Should coverage user entity", () => {
