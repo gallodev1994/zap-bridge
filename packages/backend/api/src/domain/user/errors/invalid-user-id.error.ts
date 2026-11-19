@@ -1,7 +1,7 @@
 import { DomainError } from "./domain.error";
 
 export class InvalidUserIdError extends DomainError {
-   constructor() {
-      super('Invalid userId.');
+   constructor(options?: ErrorOptions) {
+      super('Invalid userId.', options);
    }
 }

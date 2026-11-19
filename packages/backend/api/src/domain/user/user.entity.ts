@@ -1,29 +1,38 @@
 import { Email } from './value-objects/email.vo';
 import { PhoneNumber } from './value-objects/phone-number.vo';
 import { UserId } from './value-objects/user-id.vo';
-import { EmailAlreadyExistsError } from './errors/EmailAlreadyExistsError';
+import { EmailAlreadyExistsError } from './errors/email-already-exist.error';
+import { EmptyError } from './errors/empty.error';
+import { Name } from './value-objects/name.vo';
 
 export interface UserProps {
-   name: string;
+   name: Name;
    email: Email;
    phone: PhoneNumber;
    birthDate?: Date;
-   createdAt?: Date;
 }
 
 export class User {
-   private name: string;
+   private name: Name;
    private email: Email;
    private phone: PhoneNumber;
    private birthDate?: Date;
-   private readonly createdAt: Date;
-   private readonly isActive: boolean;
+   private isActive: boolean;
    //private readonly rbac;
 
    constructor(
       private readonly id: UserId,
-      private readonly props: UserProps
-   ) { }
+      private readonly props: UserProps,
+      isActive: boolean = true
+   ) {
+      const { email, name, phone, birthDate } = this.props;
+
+      this.name = name;
+      this.email = email;
+      this.phone = phone
+      this.birthDate = birthDate;
+      this.isActive = isActive;
+   }
 
    get userId(): UserId {
       return this.id;
@@ -41,10 +50,23 @@ export class User {
       return this.isActive;
    }
 
-   static create(id: UserId, props: UserProps): User {
+   get userName(): Name {
+      return this.name;
+   }
 
-      return new User(id,props);
-      //return new User()
+   get userBirthDay(): Date | null {
+      if (!this.birthDate) {
+         return null;
+      }
+      return this.birthDate;
+   }
+
+   public activate(): void {
+      this.isActive = true;
+   }
+
+   public deactivate(): void {
+      this.isActive = false;
    }
 
    public changeEmail(newEmail: Email) {
@@ -54,6 +76,16 @@ export class User {
       this.email = newEmail;
    }
 
+   static create({ id, props }: { id: UserId, props: UserProps }): User {
+      return new User(id, { ...props });
+   }
 
+   static reconstitute({
+      id,
+      props,
+      isActive
+   }: { id: UserId, props: UserProps, isActive: boolean }): User {
+      return new User(id, props, isActive);
+   }
 
 }

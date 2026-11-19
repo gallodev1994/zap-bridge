@@ -1,17 +1,17 @@
 import { UUID } from "@/shared/UUID";
-import { InvalidUserIdError } from "../errors/InvalidUserIdError";
+import { InvalidUserIdError } from "../errors/invalid-user-id.error";
 
 export class UserId extends UUID {
-   constructor(public readonly value: string) {
+   private constructor(value: string) {
       super(value);
    }
 
-   static create(value: string) {
-      if (!value) {
-         throw new InvalidUserIdError();
+   static create(value: string): UserId {
+      try {
+         return new UserId(value);
+      } catch (e) {
+         throw new InvalidUserIdError({ cause: e });
       }
-
-      return new UserId(value);
    }
 }
 

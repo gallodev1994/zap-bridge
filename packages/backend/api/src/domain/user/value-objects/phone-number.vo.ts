@@ -1,4 +1,4 @@
-import { InvalidPhoneNumberError } from '../errors/InvalidPhoneNumberError';
+import { InvalidPhoneNumberError } from '../errors/invalid-phone-number.error';
 
 export class PhoneNumber {
    private constructor(

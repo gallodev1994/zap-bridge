@@ -1,10 +1,12 @@
+import { InvalidUUIDError } from "./errors/invalid-uuid.error";
+
 export abstract class UUID {
    protected constructor(
       public readonly value: string
    ) {
       if (!UUID.isValid(value)) {
-         throw new Error('Invalid UUID.');
-      }      
+         throw new InvalidUUIDError();
+      }
    }
 
    private static isValid(value: string): boolean {

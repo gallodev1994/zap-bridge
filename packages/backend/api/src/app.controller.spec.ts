@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return if it work - true', () => {
-      expect(appController.getHealth()).toMatchObject({"work": true})
+    it('should return if it work', () => {
+      expect(appController.getHealth()).toMatchObject({ "work": true })
     });
   });
 });

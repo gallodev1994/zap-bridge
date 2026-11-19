@@ -1,11 +1,15 @@
-import { InvalidEmailError } from "../errors/InvalidEmailError";
+import { EmptyError } from "../errors/empty.error";
+import { InvalidEmailError } from "../errors/invalid-email.error";
 
 export class Email {
    constructor(private value: string) { }
 
    static create(value: string): Email {
-      const normalized = value.trim().toLowerCase();
+      if (!value) {
+         throw new EmptyError(Email.name)
+      }
 
+      const normalized = value.trim().toLowerCase();
       if (!this.isValid(normalized)) {
          throw new InvalidEmailError();
       }
