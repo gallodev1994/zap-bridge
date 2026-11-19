@@ -10,7 +10,7 @@
     "deploy": "nest deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start --env-file .env",
-    "start:dev": "nest start --watch --env-file .env",
+    "start:dev": "bun --watch --env-file .env ./src/main.ts",
     "start:debug": "nest start --debug --watch --env-file .env",
     "start:prod": "node dist/main",
     "lint": "oxlint --type-aware src/ test/",

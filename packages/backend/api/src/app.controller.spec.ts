@@ -14,8 +14,8 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return if it work', () => {
+  describe('Health check', () => {
+    it('should return if service up', () => {
       expect(appController.getHealth()).toMatchObject({ "work": true })
     });
   });
