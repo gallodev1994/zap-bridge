@@ -5,6 +5,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
   });
-  await app.listen(process.env.PORT ?? 3001);
+
+  app.setGlobalPrefix('api');
+
+  await app.listen(process.env.BACKEND_PORT ?? 3001);
 }
 void bootstrap();

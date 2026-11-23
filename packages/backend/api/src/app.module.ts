@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserController } from './presentation/UserController';
+import { PrismaUserRepository } from './infrastructure/repositories/prisma-user.repository';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -16,7 +18,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'api',
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, UserController],
+  providers: [AppService, PrismaUserRepository],
 })
-export class AppModule {}
+export class AppModule { }

@@ -6,7 +6,7 @@ import type { HealthResponse } from '@/shared/interface/HealthResponse';
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
-  @Get('api/health')
+  @Get('health')
   getHealth(): HealthResponse {
     return this.appService.getHealth();
   }
