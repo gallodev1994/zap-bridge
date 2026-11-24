@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: ./packages/backend/api/Dockerfile
     ports:
-      - "3000:3003"
+      - "3001:${PORT:-3001}"
     volumes:
       - ./packages/backend/api:/app/packages/backend/api
       - /app/packages/backend/api/node_modules
