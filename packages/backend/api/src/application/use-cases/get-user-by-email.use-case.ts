@@ -3,7 +3,7 @@ import { UserRepository } from "@/domain/user/repositories/user.repository";
 import { User } from "@/domain/user/user.entity";
 import { Email } from "@/domain/user/value-objects/email.vo";
 
-export class GetUserByEmail {
+export class GetUserByEmailUseCase {
    constructor(private readonly repository: UserRepository) { }
 
    async execute(email: Email): Promise<User> {
